@@ -20,14 +20,15 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     csv_header = next(csvreader)
     print(f"CSV Header: {csv_header}")
 
-    # DEBUGGING - Check to make sure it's reading the file correctly
+    # Reading each row in the CSV file
     for row in csvreader:
         month = row[0]
         profit_loss = row[1]
+        # DEBUGGING -- This was to verify that the delimiter was working correctly since it was being read kind of weird
         print(f"in {month} the profit was {profit_loss}")
 
         # Total months; added 1 to the sum to account for the first row being 0
-        # Source: https://stackoverflow.com/questions/16108526/how-to-obtain-the-total-numbers-of-rows-from-a-csv-file-in-python
+        # Source: https://stackoverflow.com/questions/16108526/how-to-obtain-the-total-numbers-of-rows-from-a-csv-file-in-python NEED TO ADD TO READ ME
         total_months = (sum(1 for row in csvreader) + 1)
         print(total_months)
 
