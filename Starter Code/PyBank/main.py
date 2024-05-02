@@ -29,6 +29,7 @@ with open(csvpath, encoding='UTF-8') as csvfile:
 
         # Total months; added 1 to the sum to account for the first row being 0
         # Source: https://stackoverflow.com/questions/16108526/how-to-obtain-the-total-numbers-of-rows-from-a-csv-file-in-python NEED TO ADD TO READ ME
+        global total_months #Makes it so the total_months variable can be printed outside this code
         total_months = (sum(1 for row in csvreader) + 1)
         print(total_months)
 
