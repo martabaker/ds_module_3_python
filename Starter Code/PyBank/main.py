@@ -4,7 +4,7 @@ import os
 # Module for reading CSV files
 import csv
 
-# Set path for files using relative path with slashes flipped
+# Set path for files using relative path
 csvpath = "PyBank/Resources/budget_data.csv"
 
 
@@ -12,7 +12,8 @@ csvpath = "PyBank/Resources/budget_data.csv"
 total_profit = 0 #will hold the sum
 profit = [] # this list will hold the profits for each month
 index = 0
-mtm_change = {} # this dictionary will hold the month to month changes in profits and the corresponding month where they occur
+#mtm_change = [] # this list will hold the month to month changes in profits
+change = []
 
 # Open the CSV file
 with open(csvpath, encoding='UTF-8') as csvfile:
@@ -48,11 +49,34 @@ with open(csvpath, encoding='UTF-8') as csvfile:
          # Total months: counting the number of values in the list "profit" because each value in the profit list 
         total_months = len(profit)
         
+        mtm_change = [row for row in csvreader] # might be helpful when adding new values into dictionary   
+         
+    # This finds the month to month changes
+    for i in range(len(profit)):
+        if i == 0:
+            chng = profit [0]
+        else:
+            chng = (profit[i]-profit[i-1])
+        change.append(chng)
+        
         # Average Change in Profit/Losses: They want us to find the average month-to-month change; need to find month-to-month change and then average that
-        average_change = total_profit/total_months
+        #index = 0 #reseting index
+        # created the dictionary from values in the csv file; help from https://saturncloud.io/blog/how-to-convert-a-csv-file-to-a-dictionary-in-python-using-the-csv-and-pandas-modules/
+    
+    print(mtm_change)
+
+    index = 0 #resetting this
+    for key in mtm_change:
+        mtm_change[key] = change[index]
+        index += 1
+
+        # while index < len(profit):
+        #     mtm_change.append((profit[index]-profit[index-1]))
+        #     index+=1
+        
 
         # Greatest Increase in Profit/Losses: Once we have the average month-to-month change, then we can use the 
-        greatest_increase = max(profit)
+        #greatest_increase = max(profit)
         
         
     # print values
@@ -62,8 +86,10 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     # print(negative)
     # print(average_change)
     # print(greatest_increase)
-    # print(profit)
+    print(mtm_change)
+    
     # print(len(profit))
+    #print(change,change1)
 
 
 # # Print out the desired results
