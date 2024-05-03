@@ -20,8 +20,7 @@ csvpath = "PyBank/Resources/budget_data.csv"
 #     total_profit = sum(2 for budget in open('PyBank/Resources/budget_data.csv'))
     
 
-# # Average Change in Profit/Losses
-#     average_change = total_profit/total_months
+
 
 # # # Find the Greatest Increase in profits and corresponding month
 # #     greatest_increase = #type code here
@@ -41,7 +40,10 @@ csvpath = "PyBank/Resources/budget_data.csv"
 
 
 #defining total_profit
-total_profit=0
+total_profit = 0 #will hold the sum
+profit = [] # this list will hold the profits for each month
+index = 0
+mtm_change = [] # this list will hold the month to month changes in profits
 
 # Open the CSV file
 with open(csvpath, encoding='UTF-8') as csvfile:
@@ -53,26 +55,43 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     csv_header = next(csvreader)
     print(f"CSV Header: {csv_header}")
 
-    #total = 0 #Setting the initial value for total profit-loss at 0
-
     # Reading each row in the CSV file
-    # NOTE: CURRENTLY THE PROFIT-LOSS STUFF WORKS IF THE THE TOTAL MONTHS ISN'T BEING RUN
     for row in csvreader:
               
         month = row[0]
-        profit_loss = row[1] #returns a string
+        profit_loss = int(row[1]) # casted values to return an integer
 
         # DEBUGGING -- This was to verify that the delimiter was working correctly since it was being read kind of weird
         #print(f"in {month} the profit was {profit_loss}")
 
-        # Total months; added 1 to the sum to account for the first row being 0
-        # Source: https://stackoverflow.com/questions/16108526/how-to-obtain-the-total-numbers-of-rows-from-a-csv-file-in-python NEED TO ADD TO READ ME
-        #global total_months #Makes it so the total_months variable can be printed outside this code
-        total_months = (sum(1 for row in csvreader) + 1)
-        print(total_months)
-
-        # Total Profit-Losses
-        profitLoss = int(profit_loss) #casts the variable to be an float so it can be summed
-        total_profit += profitLoss
+        # Total months
+        total_months = len(profit)
         
-        print(total_profit)
+
+        # Total Profit-Losses; adding profit_loss values to each previous sum
+        profitLoss = profit_loss #casts the variable to be an float so it can be summed
+        profit.append(profitLoss) #currently this looks to just be creating a list--profit is a list of all the profit_loss values--worry about condensing lines later
+        # profit = profit.append(int(profit_loss))
+        while index < len(profit):
+            total_profit = total_profit + profit[index]
+            index+=1
+
+         # Total months: counting the number of values in the list "profit" because each value in the profit list 
+        total_months = len(profit)
+        
+        # Average Change in Profit/Losses: They want us to find the average month-to-month change; need to find month-to-month change and then average that
+        average_change = total_profit/total_months
+
+        # Greatest Increase in Profit/Losses: Once we have the average month-to-month change, then we can use the 
+        greatest_increase = max(profit)
+        
+        
+    # print values
+    print(total_months)
+    print(total_profit)
+    print(positive)
+    print(negative)
+    print(average_change)
+    print(greatest_increase)
+    print(profit)
+    print(len(profit))
