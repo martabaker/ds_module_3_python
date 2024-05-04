@@ -23,7 +23,6 @@ with open(csvpath, encoding='UTF-8') as csvfile:
 
     # Read the header row first
     csv_header = next(csvreader)
-    # print(f"CSV Header: {csv_header}")
 
     # Reading each row in the CSV file
     for row in csvreader:
