@@ -10,7 +10,6 @@ outputpath = "PyPoll/Analysis/pypoll_output.txt"
 
 #defining variables
 candidates = [] # Will output the 3rd column of the CSV file 
-index = 0
 stockham = [] # Will house all items in the candidates list that contain votes for Charles Casper Stockham
 degette = [] # Will house all items in the candidates list that contain votes for Diana DeGette
 doane = [] # Will house all items in the candidates list that contain votes for Raymon Anthony Doane
@@ -88,6 +87,6 @@ print(f"{candidate_list[0]}: {candidate_perc[0]}% ({vote_list[0]})")
 print(f"{candidate_list[1]}: {candidate_perc[1]}% ({vote_list[1]})")
 print(f"{candidate_list[2]}: {candidate_perc[2]}% ({vote_list[2]})") 
 print("------------------------")
-print(f"Winner: {winning_cand})")
+print(f"Winner: {winning_cand}")
 print("------------------------")
     
