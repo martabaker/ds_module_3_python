@@ -60,11 +60,12 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     
     average_change = sum(change)/len(change) # Summing the list of changes and then dividing the number of values in the list to find the average of the changes
 
-    greatest_increase = max(change)
-    month_inc = months[change.index(greatest_increase)]
+    greatest_increase = max(change) # Find the maximum value of the change list using the built-in max function
+    month_inc = months[change.index(greatest_increase) + 1] # Finding the value in the months list that corresponds to the greatest increase. Added 1 to the index because the first value in the original change list was removed
     
+    # repeated the greatest_increase work for the greatest_decrease
     greatest_decrease = min(change)
-    month_dec = months[change.index(greatest_decrease)]
+    month_dec = months[change.index(greatest_decrease) + 1]
 
 
 f = open(outputpath, "w")
