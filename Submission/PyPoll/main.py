@@ -31,8 +31,7 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         candidate = row[2]
 
         # First create a list with just the candidates
-        candid = candidate # creating a temporary variable
-        candidates.append(candid)
+        candidates.append(candidate)
 
     # Using the length of the list "Candidates" because each item in the list corresponds to a different Ballot ID
     total_votes = len(candidates)

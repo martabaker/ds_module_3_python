@@ -31,20 +31,19 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         profit_loss = int(row[1]) # casted values to return an integer
 
         # Total Profit-Losses; adding profit_loss values to each previous sum
-        profitLoss = profit_loss # creating a temporary variable
-        profit.append(profitLoss) 
+        profit.append(profit_loss) 
 
         # Adds all of the values in the profit list together to get the total profit
         while index < len(profit):
             total_profit = total_profit + profit[index]
-            index+=1
+            index += 1 
 
         # Total months: counting the number of values in the list "profit" because each value in the profit list 
         total_months = len(profit)
 
         # to create a list of the months
-        monthlist = month
-        months.append(monthlist)
+        months.append(month)
+
         
 
     # This finds the month to month changes with help from the Xpert
