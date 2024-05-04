@@ -31,7 +31,7 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         profit_loss = int(row[1]) # casted values to return an integer
 
         # Total Profit-Losses; adding profit_loss values to each previous sum
-        profitLoss = profit_loss #casts the variable to be an float so it can be summed
+        profitLoss = profit_loss 
         profit.append(profitLoss) #currently this looks to just be creating a list--profit is a list of all the profit_loss values--worry about condensing lines later
 
         while index < len(profit):
