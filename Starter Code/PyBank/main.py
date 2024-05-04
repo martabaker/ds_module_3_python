@@ -13,7 +13,8 @@ total_profit = 0 #will hold the sum
 profit = [] # this list will hold the profits for each month
 index = 0
 #mtm_change = [] # this list will hold the month to month changes in profits
-change = []
+# change = []
+# mtm_dict = {}
 
 # Open the CSV file
 with open(csvpath, encoding='UTF-8') as csvfile:
@@ -31,44 +32,51 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         month = row[0]
         profit_loss = int(row[1]) # casted values to return an integer
 
-        # DEBUGGING -- This was to verify that the delimiter was working correctly since it was being read kind of weird
-        #print(f"in {month} the profit was {profit_loss}")
-
         # Total months
         total_months = len(profit)
-        
+                
 
         # Total Profit-Losses; adding profit_loss values to each previous sum
-        profitLoss = profit_loss #casts the variable to be an float so it can be summed
+        profitLoss = profit_loss
         profit.append(profitLoss) #currently this looks to just be creating a list--profit is a list of all the profit_loss values--worry about condensing lines later
-        # profit = profit.append(int(profit_loss))
+        
         while index < len(profit):
             total_profit = total_profit + profit[index]
-            index+=1
+            index += 1
 
-         # Total months: counting the number of values in the list "profit" because each value in the profit list 
-        total_months = len(profit)
+        
+        # Total months: counting the number of values in the list "profit" because each value in the profit list 
+        #total_months = len(profit)
         
         mtm_change = [row for row in csvreader] # might be helpful when adding new values into dictionary   
          
     # This finds the month to month changes
-    for i in range(len(profit)):
-        if i == 0:
-            chng = profit [0]
-        else:
-            chng = (profit[i]-profit[i-1])
-        change.append(chng)
+    # for i in range(len(profit)):
+    #     if i == 0:
+    #         chng = profit [0]
+    #     else:
+    #         chng = (profit[i]-profit[i-1])
+    #     change.append(chng)
         
         # Average Change in Profit/Losses: They want us to find the average month-to-month change; need to find month-to-month change and then average that
         #index = 0 #reseting index
         # created the dictionary from values in the csv file; help from https://saturncloud.io/blog/how-to-convert-a-csv-file-to-a-dictionary-in-python-using-the-csv-and-pandas-modules/
     
-    print(mtm_change)
+    # months = []
 
-    index = 0 #resetting this
-    for key in mtm_change:
-        mtm_change[key] = change[index]
-        index += 1
+    # for i in range(len(profit)):
+    #     months.append(month[i])
+
+    # print(month)
+
+    # print(mtm_change)
+
+    #for key in 
+
+    # temp = 0 #resetting this
+    # for key in mtm_change:
+    #     mtm_change[key] = change[int(temp)]
+    #     temp += 1
 
         # while index < len(profit):
         #     mtm_change.append((profit[index]-profit[index-1]))
@@ -81,12 +89,12 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         
     # print values
     # print(total_months)
-    # print(total_profit)
+    print(total_profit)
     # print(positive)
     # print(negative)
     # print(average_change)
     # print(greatest_increase)
-    print(mtm_change)
+    #print(mtm_change)
     
     # print(len(profit))
     #print(change,change1)
