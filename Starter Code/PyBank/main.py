@@ -9,13 +9,13 @@ csvpath = "PyBank/Resources/budget_data.csv"
 
 
 #defining total_profit and lists
-total_profit = 0 #will hold the sum
-profit = [] # this list will hold the profits for each month
+total_profit = 0 #will hold the sum of the profits and losses
+profit = [] # this list will hold the profits and losses for each month from the CSV file
 index = 0
 mtm_change = {} # this dictionary will hold the month to month changes in profits and the corresponding month where they occur
-change=[]
-months = []
-only_change = []
+change = [] # this list will hold all of the changes for the months
+months = [] # this list holds all of the month data from the CSV file
+only_change = [] # this list excludes the first value that was in the change file since the first value in the change list was just the first profit-loss value
 
 # Open the CSV file
 with open(csvpath, encoding='UTF-8') as csvfile:
@@ -33,17 +33,10 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         month = row[0]
         profit_loss = int(row[1]) # casted values to return an integer
 
-        # DEBUGGING -- This was to verify that the delimiter was working correctly since it was being read kind of weird
-        #print(f"in {month} the profit was {profit_loss}")
-
-        # Total months
-        # total_months = len(profit)
-        
-
         # Total Profit-Losses; adding profit_loss values to each previous sum
         profitLoss = profit_loss #casts the variable to be an float so it can be summed
         profit.append(profitLoss) #currently this looks to just be creating a list--profit is a list of all the profit_loss values--worry about condensing lines later
-        # profit = profit.append(int(profit_loss))
+
         while index < len(profit):
             total_profit = total_profit + profit[index]
             index+=1
@@ -90,6 +83,9 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     print(only_change)
     
     average_change = sum(only_change)/len(only_change) # Summing the list of changes and then dividing the number of values in the list to find the average of the changes
+
+    greatest_increase = max(only_change)
+    greatest_decrease = min(only_change)
       
 
         
@@ -99,7 +95,8 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     # print(positive)
     # print(negative)
     print(average_change)
-    # print(greatest_increase)
+    print(greatest_increase)
+    print(greatest_decrease)
     # print(profit)
     # print(len(profit))
     print(mtm_change)
