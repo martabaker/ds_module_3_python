@@ -9,7 +9,7 @@ csvpath = "PyBank/Resources/budget_data.csv"
 outputpath = "PyBank/Analysis/pybank_output.txt"
 
 #defining variables
-total_profit = 0 #will hold the sum of the profits and losses
+total_profit = 0 # will hold the sum of the profits and losses
 profit = [] # this list will hold the profits and losses for each month from the CSV file
 index = 0
 change = [] # this list will hold all of the changes for the months
@@ -31,9 +31,10 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         profit_loss = int(row[1]) # casted values to return an integer
 
         # Total Profit-Losses; adding profit_loss values to each previous sum
-        profitLoss = profit_loss 
-        profit.append(profitLoss) #currently this looks to just be creating a list--profit is a list of all the profit_loss values--worry about condensing lines later
+        profitLoss = profit_loss # creating a temporary variable
+        profit.append(profitLoss) 
 
+        # Adds all of the values in the profit list together to get the total profit
         while index < len(profit):
             total_profit = total_profit + profit[index]
             index+=1
