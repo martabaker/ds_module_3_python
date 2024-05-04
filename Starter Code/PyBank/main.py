@@ -15,6 +15,7 @@ index = 0
 mtm_change = {} # this dictionary will hold the month to month changes in profits and the corresponding month where they occur
 change=[]
 months = []
+only_change = []
 
 # Open the CSV file
 with open(csvpath, encoding='UTF-8') as csvfile:
@@ -70,7 +71,11 @@ with open(csvpath, encoding='UTF-8') as csvfile:
             chng = (profit[i]-profit[i-1])
         change.append(chng)
         
-    print(change) 
+    print(change)
+
+    only_change = change.copy() # creating a copy of the change list because I need it for other work and the list is going to be emptied when creating the dictionary
+    
+
 
     # This merges the months list and the change lists into a dictionary where the months are the keys and changes are the values
     # Source: https://www.geeksforgeeks.org/python-convert-two-lists-into-a-dictionary/
@@ -79,28 +84,21 @@ with open(csvpath, encoding='UTF-8') as csvfile:
             mtm_change[key] = value
             change.remove(value)
             break
-
+    
+    # Writing code to calculate the average of the changes
+    only_change.pop(0) # This removes the 1st value in the list because it isn't a change. It was just the first value in the data
+    print(only_change)
+    
+    average_change = sum(only_change)/len(only_change) # Summing the list of changes and then dividing the number of values in the list to find the average of the changes
       
-        # Average Change in Profit/Losses: They want us to find the average month-to-month change; need to find month-to-month change and then average that
-        # index = 0 #reseting index
-        # while index < len(profit):
-        #     if index == 0:
-        #         mtm_change[month[index]] = profit[index]
-        #     else:
-        #         mtm_change[month[index]] = (profit[index]-profit[index-1])
-        #     index+=1
-        
 
-        # Greatest Increase in Profit/Losses: Once we have the average month-to-month change, then we can use the 
-        #greatest_increase = max(profit)
-        
         
     # print values
     # print(total_months)
     # print(total_profit)
     # print(positive)
     # print(negative)
-    # print(average_change)
+    print(average_change)
     # print(greatest_increase)
     # print(profit)
     # print(len(profit))
@@ -108,10 +106,10 @@ with open(csvpath, encoding='UTF-8') as csvfile:
 
 
 # # Print out the desired results
-    # print("Financial Analysis")
-    # print("------------------------")
-    # print(f"Total Months: {total_months}")
-    # print(f"Total: ${total_profit}")
-    # print(f"Average Change: ${average_change}")
+    print("Financial Analysis")
+    print("------------------------")
+    print(f"Total Months: {total_months}")
+    print(f"Total: ${total_profit}")
+    print(f"Average Change: ${average_change}")
     # print(f"Greatest Increase in Profits: {month} (${greatest_increase})")
     # print(f"Greatest Decrease in Profits: {month} (${greatest_decrease})")
