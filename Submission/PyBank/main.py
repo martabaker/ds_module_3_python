@@ -30,7 +30,7 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         month = row[0]
         profit_loss = int(row[1]) # casted values to return an integer
 
-        # Total Profit-Losses; adding profit_loss values to each previous sum
+        # profit: adding all values from column 2 in the CSV to the profit list
         profit.append(profit_loss) 
 
         # Adds all of the values in the profit list together to get the total profit
@@ -41,7 +41,7 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         # Total months: counting the number of values in the list "profit" because each value in the profit list 
         total_months = len(profit)
 
-        # to create a list of the months
+        # to create a list of the months from the 1st column in the CSV
         months.append(month)
 
         

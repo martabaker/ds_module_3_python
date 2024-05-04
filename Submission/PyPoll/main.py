@@ -37,7 +37,7 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     total_votes = len(candidates)
 
     # Use list comprehension to create new lists with just the candidates names
-    # list stockham for all ballots cast for him
+    # list stockham for all ballots cast for him (each "name" value is a unique vote)
     stockham = [name for name in candidates if name == "Charles Casper Stockham"]
     # list degette for all ballots cast for her
     degette = [name for name in candidates if name == "Diana DeGette"]
